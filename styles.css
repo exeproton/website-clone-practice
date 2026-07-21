@@ -5,6 +5,7 @@
   --muted: #5f5f5f;
   --accent: #0f3b58;
   --border: #e6e0d4;
+  --shadow: 0 20px 45px rgba(17, 17, 17, 0.08);
 }
 
 * {
@@ -22,6 +23,7 @@ body {
   color: var(--text);
   background: var(--bg);
   line-height: 1.7;
+  overflow-x: hidden;
 }
 
 img {
@@ -90,6 +92,16 @@ img {
   padding: 72px 0 96px;
   background: linear-gradient(120deg, #111 0%, #1b2430 55%, #28445f 100%);
   color: #f8f7f2;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, rgba(142, 219, 255, 0.16), transparent 36%);
+  animation: pulseGlow 8s ease-in-out infinite alternate;
 }
 
 .hero-inner {
@@ -127,12 +139,14 @@ img {
   color: #fff;
   border: 1px solid #fff;
   text-decoration: none;
-  transition: background 0.2s ease, color 0.2s ease;
+  transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .button:hover {
+  transform: translateY(-2px);
   background: #fff;
   color: #111;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 
 .section {
@@ -183,6 +197,14 @@ h2 {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  box-shadow: var(--shadow);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.stats-grid article:hover,
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px rgba(17, 17, 17, 0.12);
 }
 
 .stats-grid strong {
@@ -205,6 +227,7 @@ h2 {
   background: var(--surface);
   border: 1px solid var(--border);
   padding: 32px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .card h3 {
@@ -253,6 +276,28 @@ h2 {
 .footer a {
   color: #e7e7e7;
   text-decoration: none;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes pulseGlow {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.06);
+    opacity: 1;
+  }
 }
 
 @media (max-width: 860px) {
