@@ -1,5 +1,5 @@
 :root {
-  --bg: #f4efe8;
+  --bg: #f5efe8;
   --surface: rgba(255, 255, 255, 0.9);
   --text: #111111;
   --muted: #5d5d5d;
@@ -7,6 +7,7 @@
   --accent-soft: #8edbff;
   --border: rgba(17, 17, 17, 0.08);
   --shadow: 0 24px 56px rgba(17, 17, 17, 0.12);
+  --page-shadow: 0 0 0 1px rgba(255, 255, 255, 0.7), 0 30px 80px rgba(10, 19, 31, 0.12);
 }
 
 * {
@@ -22,7 +23,10 @@ html {
 body {
   font-family: 'Inter', sans-serif;
   color: var(--text);
-  background: linear-gradient(135deg, #f7f3eb 0%, #efe7db 100%);
+  background:
+    radial-gradient(circle at top left, rgba(142, 219, 255, 0.18), transparent 28%),
+    radial-gradient(circle at 85% 10%, rgba(15, 59, 88, 0.16), transparent 32%),
+    linear-gradient(135deg, #f7f3eb 0%, #efe7db 100%);
   line-height: 1.7;
   overflow-x: hidden;
 }
@@ -33,7 +37,7 @@ img {
 }
 
 .container {
-  width: min(1160px, calc(100% - 48px));
+  width: min(1200px, calc(100% - 72px));
   margin: 0 auto;
 }
 
@@ -105,18 +109,21 @@ img {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: clamp(72px, 8vh, 104px) 0;
+  padding: clamp(84px, 8vh, 112px) 0;
   scroll-snap-align: start;
   scroll-margin-top: 0;
   position: relative;
   overflow: hidden;
+  margin: 20px 0;
 }
 
 .scroll-card::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at top right, rgba(142, 219, 255, 0.16), transparent 42%);
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.28), transparent 28%),
+    radial-gradient(circle at top right, rgba(142, 219, 255, 0.16), transparent 42%);
   pointer-events: none;
 }
 
@@ -128,11 +135,17 @@ img {
   gap: clamp(24px, 3vw, 36px);
   align-items: center;
   width: 100%;
+  padding: clamp(16px, 2vw, 24px);
+  border-radius: 32px;
+  box-shadow: var(--page-shadow);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(6px);
 }
 
 .hero-card {
   background: linear-gradient(135deg, #0d1420 0%, #162335 45%, #2b5168 100%);
   color: #f7f5ef;
+  border-radius: 36px;
 }
 
 .strategy-card,
@@ -443,7 +456,7 @@ img {
 
 @media (max-width: 640px) {
   .container {
-    width: min(100% - 28px, 1160px);
+    width: min(100% - 24px, 1160px);
   }
 
   .nav-wrap {
@@ -459,6 +472,12 @@ img {
   .scroll-card {
     padding: 72px 0;
     min-height: 100vh;
+    margin: 12px 0;
+  }
+
+  .card-inner {
+    padding: 14px;
+    border-radius: 24px;
   }
 
   .hero-actions {
