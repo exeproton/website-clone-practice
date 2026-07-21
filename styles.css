@@ -33,7 +33,7 @@ img {
 }
 
 .container {
-  width: min(1160px, calc(100% - 40px));
+  width: min(1160px, calc(100% - 48px));
   margin: 0 auto;
 }
 
@@ -105,7 +105,7 @@ img {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: clamp(72px, 8vh, 96px) 0;
+  padding: clamp(72px, 8vh, 104px) 0;
   scroll-snap-align: start;
   scroll-margin-top: 0;
   position: relative;
@@ -156,10 +156,11 @@ img {
 }
 
 .hero-copy-block h1 {
-  font-size: clamp(2.8rem, 5vw, 4.6rem);
+  font-size: clamp(2.6rem, 5vw, 4.6rem);
   line-height: 0.95;
   letter-spacing: -0.03em;
   margin-bottom: 18px;
+  text-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
 }
 
 .hero-copy-block p {
@@ -184,7 +185,13 @@ img {
   border-radius: 999px;
   text-decoration: none;
   font-weight: 600;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.button:hover,
+.ghost-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.16);
 }
 
 .button {
@@ -219,6 +226,17 @@ img {
   border-radius: 24px;
   box-shadow: var(--shadow);
   padding: clamp(20px, 2.2vw, 24px);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.panel-card:hover,
+.quote-card:hover,
+.feature-stack article:hover,
+.portfolio-grid article:hover,
+.news-grid article:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 28px 60px rgba(17, 17, 17, 0.12);
+  border-color: rgba(15, 59, 88, 0.25);
 }
 
 .image-placeholder {
@@ -425,7 +443,7 @@ img {
 
 @media (max-width: 640px) {
   .container {
-    width: min(100% - 24px, 1160px);
+    width: min(100% - 28px, 1160px);
   }
 
   .nav-wrap {
@@ -435,12 +453,12 @@ img {
   }
 
   .nav-links {
-    gap: 12px 16px;
+    gap: 10px 14px;
   }
 
   .scroll-card {
-    padding: 64px 0;
-    min-height: auto;
+    padding: 72px 0;
+    min-height: 100vh;
   }
 
   .hero-actions {
@@ -454,5 +472,9 @@ img {
 
   .hero-copy-block h1 {
     font-size: 2.4rem;
+  }
+
+  .portfolio-thumb {
+    height: 96px;
   }
 }

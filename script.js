@@ -10,7 +10,7 @@ const revealObserver = new IntersectionObserver(
       }
     });
   },
-  { threshold: 0.25 }
+  { threshold: 0.2 }
 );
 
 revealElements.forEach((element) => revealObserver.observe(element));
@@ -26,7 +26,7 @@ const sectionObserver = new IntersectionObserver(
       }
     });
   },
-  { threshold: 0.6 }
+  { threshold: 0.55 }
 );
 
 sections.forEach((section) => sectionObserver.observe(section));
