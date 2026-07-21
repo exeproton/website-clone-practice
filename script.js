@@ -1,15 +1,32 @@
 const revealElements = document.querySelectorAll('.reveal');
+const navLinks = document.querySelectorAll('.nav-links a');
+const sections = document.querySelectorAll('.scroll-card');
 
-const revealOnScroll = () => {
-  revealElements.forEach((element) => {
-    const elementTop = element.getBoundingClientRect().top;
-    const windowHeight = window.innerHeight;
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+      }
+    });
+  },
+  { threshold: 0.2 }
+);
 
-    if (elementTop < windowHeight - 80) {
-      element.classList.add('is-visible');
-    }
-  });
-};
+revealElements.forEach((element) => revealObserver.observe(element));
 
-window.addEventListener('scroll', revealOnScroll);
-window.addEventListener('load', revealOnScroll);
+const sectionObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        navLinks.forEach((link) => {
+          const activeId = link.getAttribute('href');
+          link.classList.toggle('is-active', activeId === `#${entry.target.id}`);
+        });
+      }
+    });
+  },
+  { threshold: 0.55 }
+);
+
+sections.forEach((section) => sectionObserver.observe(section));
